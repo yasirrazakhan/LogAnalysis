@@ -5,8 +5,6 @@ In this Project we are going to analyze a newspaper site database with million r
  - POSTGRESQL
 ## Descripton and Design
   - This project uses **Python-DB Api** funciton to connect to *PostgreSQL* database.
-  - Download the Sql file to run the analyzing code.
-  - Import all the files in the SQl file to your PostgreSQL database.
   - It uses separate method for each question.
   - It also uses views to create customized table and analyze data more easily, Here is the description of each view used.
     1. `create view` ***PopularArticles**  as select title, count(path) as views from articles join log on  log.path = concat('/article/', articles.slug) group by title order by views desc limit 3*;
