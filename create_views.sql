@@ -16,7 +16,7 @@ create view errorsandrequests as select errorsrate.erros, totalrequests.requests
 		 from errorsrate join totalrequests on errorsrate.day = totalrequests.day;
 
 create view calpercentage as select erros, requests, (cast((erros) as float)/ cast((requests) as float)*100)
-		as percentage from errors and requests;
+		as percentage from errorsandrequests;
 
 create view q3querry as select errorsrate.day, round(cast(calpercentage.percentage as numeric), 2) as percentage
 	     from errorsrate join calpercentage on errorsrate.erros = calpercentage.erros where percentage > 1;
