@@ -11,6 +11,7 @@ In this Project we are going to analyze a newspaper site database with million r
   - Run the following command `psql -d [db name] -f newsdata.sql` this will import data in the file.
   - To test run the queries import **create_views** file by typing the following command `psql -d [db name] -f create_views.sql`.
   - You are know setup to test the project.
+  - Run the `newsdb.py` file and see the result.
 
 ### Acknowledgment
 - A very big thank you to Udacity Full Stack Nano-degree
