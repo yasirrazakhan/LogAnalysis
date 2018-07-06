@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-import psycopg2
 import bleach
+import psycopg2
 from pprint import pprint
 import sys
 
@@ -9,7 +9,10 @@ DBNAME = "news"
 
 
 def q1():
-    db = psycopg2.connect(database=DBNAME)
+    try:
+        db = psycopg2.connect(database=DBNAME)
+    except psycopg2.error as e:
+        raise e
     c = db.cursor()
     c.execute("select * from PopularArticles")
     posts = c.fetchall()
@@ -22,7 +25,10 @@ def q1():
 
 
 def q2():
-    db = psycopg2.connect(database=DBNAME)
+    try:
+        db = psycopg2.connect(database=DBNAME)
+    except psycopg2.error as e:
+        raise e
     c = db.cursor()
     c.execute("select * from PopularAuthors")
     authors = c.fetchall()
@@ -35,9 +41,13 @@ def q2():
 
 
 def q3():
-    db = psycopg2.connect(database=DBNAME)
+    try:
+        db = psycopg2.connect(database=DBNAME)
+    except psycopg2.error as e:
+        raise e
     c = db.cursor()
-    c.execute("select day, percentage|| '% errors'as percentage from q3query;")
+    query = "select day, percentage|| '% errors'as percentage from q3query;"
+    c.execute(query)
     errors = c.fetchall()
     print('Q3: On which days did more than 1"%" of requests lead to errors?')
     print
@@ -46,6 +56,9 @@ def q3():
         print(fdate+" " + "---" + error[1])
     db.close()
     print
-q1()
-q2()
-q3()
+
+
+if __name__ == '__main__':
+        q1()
+        q2()
+        q3()
